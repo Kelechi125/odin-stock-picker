@@ -13,21 +13,51 @@
 
 def stock_picker(array)
 
+  min_price = array[0]
+  max_profit = 0
+  buy_day = nil
+  sell_day = nil
+
+  array.each_with_index do |price, day|
+    if price < min_price
+      min_price = price
+      buy_day =  day
+    end
+
+    min_price
+    buy_day
+
+    profit = price - min_price
+    
+    if profit > max_profit
+      max_profit = profit
+      sell_day = day
+    end
+
+    sell_day
+
+    p [buy_day, sell_day]
+  end
+=begin
   array.each_with_index do |price, day|
     array.each_with_index do |price_2, day_2|
-      if price > price_2
-        pair = []
-        pair.push(price, price_2)
-        difference = price - price_2
+      if price_2 > price
+        profit = price_2 - price
 
-        p pair
-        p difference
+        if profit > max_profit
+          max_profit = profit
+
+          buy_day = day
+          sell_day = day_2
+
+          p [buy_day, sell_day]
+        end
       end
     end
       
      
   end
-
+=end
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
