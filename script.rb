@@ -18,46 +18,29 @@ def stock_picker(array)
   buy_day = nil
   sell_day = nil
 
+  # start of outer loop
+
   array.each_with_index do |price, day|
-    if price < min_price
-      min_price = price
-      buy_day =  day
+    array.each_with_index do |price_2, day_2|
+      # checks if price in the inner loop is less than the price of the outer loop
+      if price_2 < price
+        # checks if price in the inner loop is less than current value of min_price
+        # if true, reassigns min_price to the value of the inner loop price
+        # and assigns corresponding day index to the buy_day
+        if price_2 < min_price
+          min_price = price_2
+          buy_day = day_2
+        end
+      end
+
     end
 
     min_price
     buy_day
-
-    profit = price - min_price
-    
-    if profit > max_profit
-      max_profit = profit
-      sell_day = day
-    end
-
-    sell_day
-
-    p [buy_day, sell_day]
   end
-=begin
-  array.each_with_index do |price, day|
-    array.each_with_index do |price_2, day_2|
-      if price_2 > price
-        profit = price_2 - price
+  
+  # end of outer loop
 
-        if profit > max_profit
-          max_profit = profit
-
-          buy_day = day
-          sell_day = day_2
-
-          p [buy_day, sell_day]
-        end
-      end
-    end
-      
-     
-  end
-=end
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
