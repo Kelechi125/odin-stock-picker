@@ -36,16 +36,17 @@ def stock_picker(array)
       buy_day = potential_buy_day
     end
 
-    profit = price - array[buy_day]
-
-    if profit > max_profit
-      max_profit = profit
-      sell_day = day
+    if !buy_day.nil?
+      profit = price - array[buy_day]
+      if profit > max_profit
+        max_profit = profit
+        sell_day = day
+      end
     end
   end
   p [buy_day, sell_day]
 end
 
-stock_picker([17,3,6,9,15,8,6,1,10])
+# stock_picker([17,3,6,9,15,8,6,1,10])
 
 stock_picker([25, 27, 8, 9, 12, 5])
